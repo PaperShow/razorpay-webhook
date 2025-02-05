@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	match /payment/{document=**} {
+      allow read, write: if true; // Anyone can read and write to 'test'
+    }
+
+    match /tutor/{document=**} {
+      allow write: if true;
+    }
+    
+    match /etp/{document=**} {
+      allow write: if true; 
+    }
+    
+    match /{document=**} {
+      allow write: if request.auth != null;
+      allow read;
+    }
+  }
+}
