@@ -90,14 +90,14 @@ exports.razorpayWebhook = onRequest(async (req, res) => {
                     'verified': true,
                 });
 
-            await db
-                .collection('etp')
-                .doc(uid)
-                .update({
-                    'paymentDone': true,
-                    'paymentId': paymentId,
-                    'orderId': orderId,
-                });
+            // await db
+            //     .collection('etp').add({
+            //         'uid' : uid,
+            //         'paymentDone': true,
+            //         'paymentId': paymentId,
+            //         'orderId': orderId,
+            //     });
+                
         }
         res.status(200).send("Webhook received and stored in Firestore");
 
